@@ -43,7 +43,7 @@
 			
 			$(window).resize(function() {
 				offset = $(container).offset();
-			})
+			});
 			
 			//adds shadow class to handle for IE <9
 			if (getInternetExplorerVersion() < 9 && getInternetExplorerVersion() > -1) {
