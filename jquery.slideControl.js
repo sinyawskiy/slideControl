@@ -13,6 +13,7 @@
 		
 		// defaults
 		var defaults = {
+			find_label: false,
 			speed: 400,
 			lowerBound: 1,
 			upperBound: 10
@@ -29,8 +30,8 @@
 			var obj = this;
 			$(this).addClass('slideControlInput');
 			var parent = $(this).parent();
-			var label = $(parent).find('label');
-			parent.html("<label>" + $(label).html() + "</label><span class=\"slideControlContainer\"><span class=\"slideControlFill\" style=\"width:" + $(obj).val()*10 + "%\"><span class=\"slideControlHandle\"></span></span></span>" + $(obj).wrap("<span></span>").parent().html());
+			var label_html = options.find_label ? '<label>'+$(parent).find('label').html()+'</label>' : '';
+			parent.html(label_html+'<span class="slideControlContainer"><span class="slideControlFill" style="width:' + $(obj).val()*10 + '%"><span class="slideControlHandle"></span></span></span>' + $(obj).wrap('<span></span>').parent().html());
 			var container = parent.find('.slideControlContainer');
 			var fill = container.find('.slideControlFill');
 			var handle = fill.find('.slideControlHandle');
