@@ -6,12 +6,12 @@
  * Examples at http://nikorablin.com/slideControl
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
- * update by Sinyawskiy at 21.04.2014
+ *
+ * update by Sinyawskiy at 22.04.2014
  */
 (function($){
 
-	 var methods = {
+	 	var methods = {
             'init': function(options){
                 var defaults = {
                     findLabel: false,
@@ -41,8 +41,7 @@
                         }
                     }
 
-                    var position = 0,
-                        $this = $(this),
+                    var $this = $(this),
                         controlId= $this.attr('id');
                     $this.addClass('slideControlInput');
 
@@ -54,8 +53,11 @@
                             labelHandler.remove();
                         }
                     }
+                    var controlSettings =  $.extend({}, settings),
+                        value = methods.checkBoundaries($this.val(), controlSettings),
+                        position = methods.getPosition(value, controlSettings);
 
-                    $this.replaceWith('<span class="slideControl"><span class="slideControlInputContainer">'+$this[0].outerHTML+label_html+'</span><span class="slideControlContainer"><span class="slideControlFill" style="width:' + $this.val()*10 + '%"><span class="slideControlHandle"></span></span></span></span>');
+                    $this.replaceWith('<span class="slideControl"><span class="slideControlInputContainer">'+$this[0].outerHTML+label_html+'</span><span class="slideControlContainer"><span class="slideControlFill" style="width:'+position+'%"><span class="slideControlHandle"></span></span></span></span>');
                     $this = $('#'+controlId);
 
                     var container = $this.parent().parent().find('.slideControlContainer');
@@ -63,7 +65,7 @@
                     var handle = fill.find('.slideControlHandle');
                     var containerWidth = container.outerWidth() + 1;
                     var handleWidth = handle.outerWidth();
-                    var controlSettings =  $.extend({}, settings);
+
 
                     container.click(function(e) {
                         e.preventDefault();
@@ -133,7 +135,7 @@
 
             // get value from page position
             'getValue': function (pageX, offset, handleWidth, containerWidth, options){
-                var value = Math.round(((pageX - offset + handleWidth/2)/containerWidth) * options.upperBound);
+                var value = Math.round(((pageX - offset + handleWidth/2)/containerWidth)* options.upperBound);
                 return value - value % options.step;
             },
 
