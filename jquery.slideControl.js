@@ -19,7 +19,8 @@
                     speed: 400,
                     lowerBound: 1,
                     upperBound: 10,
-                    step: 1
+                    step: 1,
+                    onChangeCallback: function(){}
                 };
                 var settings = $.extend(defaults, options);
 
@@ -29,15 +30,15 @@
                     if(settings.fromMinMaxBounds){
                         var attrMin = $(this).attr('min');
                         if(attrMin){
-                            settings.lowerBound = parseInt(attrMin);
+                            settings.lowerBound = parseFloat(attrMin);
                         }
                         var attrMax = $(this).attr('max');
                         if(attrMax){
-                            settings.upperBound = parseInt(attrMax);
+                            settings.upperBound = parseFloat(attrMax);
                         }
                         var attrStep = $(this).attr('step');
                         if(attrStep){
-                            settings.step = parseInt(attrStep);
+                            settings.step = parseFloat(attrStep);
                         }
                     }
 
@@ -101,6 +102,7 @@
                         }
                         changeDelay = setTimeout(function(){
                             methods.setSlider(fill, $this, controlSettings);
+                            controlSettings.onChangeCallback();
                             changeDelay = undefined;
                         }, 500);
                     });
