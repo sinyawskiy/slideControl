@@ -75,6 +75,7 @@
                         value = methods.checkBoundaries(value, controlSettings);
                         methods.animate(fill, methods.getPosition(value, controlSettings), controlSettings);
                         $this.val(value);
+                        controlSettings.onChangeCallback();
                     });
 
                     $(document).mouseup(function(e) {
