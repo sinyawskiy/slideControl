@@ -19,8 +19,7 @@
                     speed: 400,
                     lowerBound: 1,
                     upperBound: 10,
-                    step: 1,
-                    onChangeCallback: function(){}
+                    step: 1
                 };
                 var settings = $.extend(defaults, options);
 
@@ -75,7 +74,6 @@
                         value = methods.checkBoundaries(value, controlSettings);
                         methods.animate(fill, methods.getPosition(value, controlSettings), controlSettings);
                         $this.val(value);
-                        controlSettings.onChangeCallback();
                     });
 
                     $(document).mouseup(function(e) {
@@ -103,7 +101,6 @@
                         }
                         changeDelay = setTimeout(function(){
                             methods.setSlider(fill, $this, controlSettings);
-                            controlSettings.onChangeCallback();
                             changeDelay = undefined;
                         }, 500);
                     });
