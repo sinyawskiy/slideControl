@@ -108,7 +108,7 @@
             },
 
             'setSlider': function(fill, input, options){
-                var inputVal = parseInt(input.val()),
+                var inputVal = parseFloat(input.val()),
                     value = methods.checkBoundaries(inputVal, options);
                 if (inputVal > options.upperBound){
                      input.val(options.upperBound);
