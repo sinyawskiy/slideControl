@@ -134,8 +134,12 @@
 
             // get value from page position
             'getValue': function (pageX, offset, handleWidth, containerWidth, options){
-                var value = Math.round(((pageX - offset + handleWidth/2)/containerWidth)* options.upperBound);
-                return value - value % options.step;
+                var value = ((pageX - offset + handleWidth/2)/containerWidth)*options.upperBound;
+                if(options.step < 1){
+                    return (value - value % options.step).toFixed(options.step.toString().split('.')[1].length);
+                }else{
+                    return value - value % options.step;
+                }
             },
 
             // get percent position slidefill from value
