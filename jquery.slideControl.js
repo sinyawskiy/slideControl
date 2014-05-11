@@ -57,8 +57,7 @@
                         value = methods.checkBoundaries($this.val(), controlSettings),
                         position = methods.getPosition(value, controlSettings);
 
-                    $this.replaceWith('<span class="slideControl"><span class="slideControlInputContainer">'+$this[0].outerHTML+label_html+'</span><span class="slideControlContainer"><span class="slideControlFill" style="width:'+position+'%"><span class="slideControlHandle"></span></span></span></span>');
-                    $this = $('#'+controlId);
+                    $this.wrapAll('<span class="slideControlInputContainer"></span>').parent().after('<span class="slideControlContainer"><span class="slideControlFill" style="width:'+position+'%"><span class="slideControlHandle"></span></span></span>').parent().children().wrapAll('<span class="slideControl"></span>');
 
                     var container = $this.parent().parent().find('.slideControlContainer');
                     var fill = container.find('.slideControlFill');
