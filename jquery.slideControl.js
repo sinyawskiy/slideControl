@@ -45,20 +45,20 @@
                         controlId= $this.attr('id');
                     $this.addClass('slideControlInput');
 
-                    var label_html='';
+                    var labelHtml='';
                     if(settings.findLabel){
                         var labelHandler = $('label[for='+controlId+']');
                         if(labelHandler.length){
-                            label_html = labelHandler[0].outerHTML;
+                            labelHtml = labelHandler[0].outerHTML;
                             labelHandler.remove();
                         }
                     }
                     var controlSettings =  $.extend({}, settings),
                         value = methods.checkBoundaries($this.val(), controlSettings),
                         position = methods.getPosition(value, controlSettings);
+		    
+		    $this.wrapAll('<span class="slideControlInputContainer"></span>').after(labelHtml).parent().wrapAll('<span class="slideControl"></span>').after('<span class="slideControlContainer"><span class="slideControlFill" style="width:'+position+'%"><span class="slideControlHandle"></span></span></span>');
 
-		    $this.wrapAll('<span class="slideControlInputContainer"></span>').parent().wrapAll('<span class="slideControl"></span>').after('<span class="slideControlContainer"><span class="slideControlFill" style="width:'+position+'%"><span class="slideControlHandle"></span></span></span>');
-			
                     var container = $this.parent().parent().find('.slideControlContainer');
                     var fill = container.find('.slideControlFill');
                     var handle = fill.find('.slideControlHandle');
